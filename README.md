@@ -4,12 +4,13 @@ A comprehensive toolkit for data exploration, cleaning, and analysis in research
 
 ## Overview
 
-StatsAid helps researchers get an overview of their data, including:
-- Data distributions and summary statistics
-- Detection and visualization of missing values
-- Automated suggestions for data cleaning and normalization
-- Model selection based on study design
-- Recommendations for relevant analysis packages
+StatsAid helps researchers analyze their data with advanced statistical methods and intuitive visualizations:
+
+- **Data Exploration**: Automatically analyze distributions, correlations, and patterns
+- **Missing Values**: Identify patterns, test mechanisms (MCAR/MAR/MNAR), and compare imputation methods
+- **Distribution Analysis**: Test for normality, detect probability distributions, optimize transformations
+- **Statistical Guidance**: Get recommendations for appropriate models based on your study design
+- **Automated Reporting**: Generate comprehensive reports with insights and visualizations
 
 ## Installation
 
@@ -21,35 +22,74 @@ pip install statsaid
 
 ```python
 import statsaid as sa
+import pandas as pd
 
 # Load your data
-data = sa.load_data("your_data.csv")
+data = pd.read_csv("your_data.csv")
 
-# Get data overview
+# Get data overview with comprehensive statistics
 overview = sa.explore(data)
-print(overview)
 
-# Get suggestions for cleaning and normalization
-suggestions = sa.suggest_preprocessing(data)
-print(suggestions)
+# Analyze missing values and patterns
+missing_analysis = sa.analyze_missing_patterns(data)
+missing_mechanism = sa.test_missing_mechanism(data)
 
-# Get model recommendations based on study design
+# Find optimal imputation methods for a column
+imputation_comparison = sa.compare_imputation_methods(data, 'column_with_missing_values')
+
+# Test distributions and find transformations
+normality_results = sa.test_normality(data)
+transformation_results = sa.find_optimal_transformation(data['numeric_column'])
+
+# Get model recommendations
 models = sa.suggest_models(data, study_design="case_control")
-print(models)
+
+# Create visualizations
+fig1 = sa.plot_missing_heatmap(data)
+fig2 = sa.plot_transformation_comparison(data['skewed_column'], transformation_results)
 ```
 
-## Features
+## Key Features
 
-- **Data Overview**: Quick summaries and visualizations of your dataset
-- **Missing Value Analysis**: Identify patterns in missing data
-- **Data Quality Checks**: Detect outliers, inconsistencies, and data issues
-- **Normalization Suggestions**: Get recommendations for data normalization
-- **Model Selection**: Receive guidance on statistical approaches based on your study design
-- **Package Recommendations**: Discover relevant R and Python packages for your analysis
+### 1. Enhanced Missing Data Analysis
+- Pattern detection and visualization
+- MCAR/MAR/MNAR mechanism testing
+- Imputation method comparison and validation
+- Impact assessment on predictive modeling
+
+### 2. Distribution Analysis
+- Multi-test normality assessment (Shapiro-Wilk, Anderson-Darling, D'Agostino's K²)
+- Automated probability distribution fitting (20+ distributions)
+- QQ plots and visualization tools
+- Optimal transformation selection (Box-Cox, Yeo-Johnson, etc.)
+
+### 3. Data Quality Assessment
+- Multicollinearity detection
+- Outlier analysis with influence measures
+- Data leakage identification
+- Duplicates and near-duplicates detection
+
+### 4. Advanced Statistical Support
+- Appropriate statistical test selection
+- Multiple comparison corrections
+- Effect size calculations with interpretation
+- Power analysis and sample size planning
+
+### 5. Model Diagnostics
+- Residual analysis
+- Cross-validation strategy recommendation
+- Model assumption testing
+- Prediction calibration tools
+
+### 6. Specialized Features
+- Time series analysis (stationarity, seasonality, decomposition)
+- Experimental design assistance
+- Reproducible reporting
+- Feature importance and selection
 
 ## Documentation
 
-For full documentation, visit [docs/](docs/)
+For full documentation and examples, visit [docs/](docs/)
 
 ## License
 
